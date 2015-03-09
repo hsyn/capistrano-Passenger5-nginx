@@ -1,12 +1,8 @@
 require 'erb'
 
 module Capistrano
-  module UnicornNginx
+  module Passenger5Nginx
     module Helpers
-
-      def bundle_unicorn(*args)
-        SSHKit::Command.new(:bundle, :exec, :unicorn, args).to_command
-      end
 
       # renders the ERB template specified by template_name to string. Use the locals variable to pass locals to the
       # ERB template
@@ -14,7 +10,7 @@ module Capistrano
         config_file = "#{fetch(:templates_path)}/#{template_name}"
         # if no customized file, proceed with default
         unless File.exists?(config_file)
-          config_file = File.join(File.dirname(__FILE__), "../../generators/capistrano/unicorn_nginx/templates/#{template_name}")
+          config_file = File.join(File.dirname(__FILE__), "../../generators/capistrano/passenger5_nginx/templates/#{template_name}")
         end
 
         ERB.new(File.read(config_file)).result(ERBNamespace.new(locals).get_binding)

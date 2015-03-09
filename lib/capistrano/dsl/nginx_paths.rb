@@ -37,11 +37,11 @@ module Capistrano
 
       # log files
       def nginx_access_log_file
-        "/var/log/nginx/#{fetch(:nginx_config_name)}.access.log"
+        "/opt/nginx/access.log"
       end
 
       def nginx_error_log_file
-        "/var/log/nginx/#{fetch(:nginx_config_name)}.error.log"
+        "/opt/nginx/error.log"
       end
 
     end
